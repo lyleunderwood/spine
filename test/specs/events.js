@@ -1,3 +1,4 @@
+define('eventtests', ['../spine.js'], function(Spine) {
 describe("Events", function(){
   var EventTest;
   var spy;
@@ -49,4 +50,5 @@ describe("Events", function(){
     EventTest.trigger("motherio");
     expect(spy).not.toHaveBeenCalled();
   });
+});
 });

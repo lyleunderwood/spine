@@ -1,3 +1,4 @@
+define('modeltests', ['../spine.js'], function(Spine) {
 describe("Model", function(){
   var Asset;
   
@@ -275,4 +276,5 @@ describe("Model", function(){
       asset.updateAttributes({name: "lonely heart.png"});
     });
   });
+});
 });

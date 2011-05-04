@@ -1,3 +1,4 @@
+define('classtests', ['../spine.js'], function(Spine) {
 describe("Class", function(){
   var User;
   
@@ -90,4 +91,5 @@ describe("Class", function(){
     User.proxyAll("weirdScope");
     expect(User.weirdScope.apply({})).toBe(User);
   });
+});
 });

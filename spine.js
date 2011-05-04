@@ -1,5 +1,4 @@
-(function(){
-  
+define(function(){
   var Spine;
   if (typeof exports !== "undefined") {
     Spine = exports;
@@ -9,7 +8,10 @@
   
   Spine.version = "0.0.3";
   
-  var $ = Spine.$ = this.jQuery || this.Zepto;
+  if(typeof jQuery != 'undefined')
+    var $ = Spine.$ = jQuery;
+  else if(typeof Zepto != 'undefined')
+    var $ = Spine.$ = Zepto;
   
   var makeArray = Spine.makeArray = function(args){
     return Array.prototype.slice.call(args, 0);
@@ -523,4 +525,6 @@
   Spine.App = Class.create();
   Spine.App.extend(Events)
   Controller.fn.App = Spine.App;
-})();
+
+  return Spine;
+});

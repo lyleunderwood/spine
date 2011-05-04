@@ -1,3 +1,4 @@
+define('routetests', ['../spine.js', '../lib/spine.route.js'], function(Spine) {
 describe("Routing", function(){
   var Route = Spine.Route;
   var spy;
@@ -95,4 +96,5 @@ describe("Routing", function(){
       expect(spy).toHaveBeenCalled();
     });
   });
+});
 });

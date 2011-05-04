@@ -1,3 +1,4 @@
+define('controllertests', ['../spine.js'], function(Spine) {
 describe("Controller", function(){
   var Users;
   var element;
@@ -87,4 +88,5 @@ describe("Controller", function(){
       expect(spy).toHaveBeenCalled();
     });
   });
+});
 });

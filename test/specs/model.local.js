@@ -1,3 +1,4 @@
+define('model.localtests', ['../spine.js', '../lib/spine.model.local.js'], function(Spine) {
 describe("Model.Local", function(){
   var User;
   var Model = Spine.Model;
@@ -15,4 +16,5 @@ describe("Model.Local", function(){
     User.loadLocal();
     expect(User.first()).toBeTruthy();
   });
+});
 });

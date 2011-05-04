@@ -13,7 +13,9 @@
  *
  * Date: Thu Mar 31 15:28:23 2011 -0400
  */
-(function( window, undefined ) {
+
+define('jQuery', function() {
+var jayCues = (function( window, undefined ) {
 
 // Use the correct document accordingly with window argument (sandbox)
 var document = window.document;
@@ -8371,4 +8373,9 @@ jQuery.each([ "Height", "Width" ], function( i, name ) {
 
 
 window.jQuery = window.$ = jQuery;
-})(window);
+return jQuery;
+})(this);
+
+console.log(jayCues);
+return jayCues;
+});
