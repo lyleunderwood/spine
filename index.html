@@ -4,6 +4,8 @@
 <head>
   <meta charset=utf-8>
   <title>Spine</title>
+  <meta name="description" content="Spine is a lightweight MVC framework for building JavaScript applications.">
+  <meta name="keywords" content="spine,javascript,mvc,framework,backbone,node,web,app">
   <link rel="stylesheet" href="site/site.css" type="text/css" charset="utf-8">
   <link rel="stylesheet" href="site/highlight.css" type="text/css" charset="utf-8">
   <script src="site/jquery.js" type="text/javascript" charset="utf-8"></script>      
@@ -22,7 +24,7 @@
 
 <p>Spine is tiny, the library comes in at around 500 lines of JavaScript, that's about 2K minified &amp; compressed. However, it's not about size, it's how you use it, and Spine certainly packs a punch!</p>
 
-<p><strong>Latest version:</strong> <a href="spine.js">0.0.3</a> (<a href="spine.min.js">minified</a>).
+<p><strong>Latest version:</strong> <a href="spine.js">0.0.4</a> (<a href="spine.min.js">minified</a>).
 Or check out the <a href="http://github.com/maccman/spine">source code</a>.</p>
 
 <h1>Overview</h1>
@@ -35,11 +37,17 @@ Or check out the <a href="http://github.com/maccman/spine">source code</a>.</p>
 <li>Full <strong>model</strong> layer and ORM</li>
 <li>Ajax and HTML5 Local Storage adapters baked in</li>
 <li>Asynchronous server communication</li>
+<li>Works in <strong>all major browsers</strong> (Chrome, Safari, Firefox, IE >= 7)</li>
 <li>Simple and lightweight</li>
+<li>Thorough documentation</li>
 </ul>
 
 
 <p>But don't take my word for it. Take a look at the source of the example applications below, and decide for yourself.</p>
+
+<h1>Tutorials</h1>
+
+<p>Spine has a growing <strong><a href="http://maccman.github.com/spine.tutorials/">set of tutorials</a></strong>, from layouts, tabs and sidebars to forms, updating records and validation.</p>
 
 <h1>Examples</h1>
 
@@ -288,7 +296,7 @@ for (var i=0; i &lt; contacts.length; i++)
 
 <p>Validating models is dirt simple, simply override the <code>validate()</code> function with your own custom one.</p>
 
-<pre><code>Contact.extend({
+<pre><code>Contact.include({
   validate: function(){
     if (!this.first_name)
       return "First name is required";
@@ -302,6 +310,8 @@ for (var i=0; i &lt; contacts.length; i++)
   alert("Contact failed to save - " + msg);
 });
 </code></pre>
+
+<p>In addition, <code>save()</code>, <code>create()</code> and <code>updateAttributes()</code> will all return false if validation fails. For more information about validation, see the <a href="http://maccman.github.com/spine.tutorials/form.html">form tutorial</a>.</p>
 
 <h2>Serialization</h2>
 
@@ -323,9 +333,13 @@ Contact.include({
 });
 </code></pre>
 
+<p>If you're using an older browser which doesn't have native JSON support (i.e. IE 7), you'll need to include <a href="https://github.com/douglascrockford/JSON-js/blob/master/json2.js">json2.js</a> which adds legacy support.</p>
+
 <h2>Persistence</h2>
 
 <p>While storing records in memory is useful for quick retrieval, persisting them in one way or another is often required. Spine includes a number of pre-existing storage modules, such as Ajax and HTML5 Local Storage, which you can use for persistence. Alternatively you can roll your own custom one, take a look at <code>spine.model.ajax.js</code> for inspiration.</p>
+
+<p>Spine's persistence is implemented via modules, so for HTML5 Local Storage persistence you'll need to include <a href="lib/spine.model.local.js">spine.model.local.js</a> script in the page and for Ajax persistence you'll need <a href="lib/spine.model.ajax.js">spine.model.ajax.js</a>.</p>
 
 <p>To persist a model using HTML5 Local Storage, simply extend it with <code>Spine.Model.Local</code>.</p>
 
@@ -786,7 +800,7 @@ var Contacts = Spine.Controller.create({
 
 <ul>
 <li><em>lib/spine.list.js</em> - controller for managing lists, such as menus</li>
-<li><em>lib/spine.controller.manager.js</em> - class for managing controllers, basically a state machine</li>
+<li><em>lib/spine.manager.js</em> - class for managing controllers, basically a state machine</li>
 <li><em>lib/spine.model.ajax.js</em> - module for adding Ajax support to Spine's models</li>
 <li><em>lib/spine.model.local.js</em> - module for adding Local Storage support to Spine's models</li>
 <li><em>lib/spine.route.js</em> - module for adding route support to Spine</li>
@@ -820,7 +834,9 @@ Well, it's all about perceived speed - which makes a huge difference to the user
 
 <h1>Change Log</h1>
 
-<p><strong>0.0.2:</strong> 17/04/2011 - first public release</p>
+<p><strong>0.0.2:</strong> 17/04/2011 - first public release
+<strong>0.0.3:</strong> 25/04/2011 - IE support, tests and fixes
+<strong>0.0.4:</strong> 11/05/2011 - Spine.Manager, Spine.List and Spine.Tabs</p>
 
 <script type="text/javascript" charset="utf-8">
   jQuery(function($){

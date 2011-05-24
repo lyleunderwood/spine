@@ -141,13 +141,11 @@ describe("Model", function(){
       }
     });
     
-    expect(function(){
-      Asset.create({name: ""})
-    }).toThrow();
+    expect(Asset.create({name: ""})).toBeFalsy();
+    expect(Asset.init({name: ""}).isValid()).toBeFalsy();
     
-    expect(function(){
-      Asset.create({name: "Yo big dog"})
-    }).not.toThrow();
+    expect(Asset.create({name: "Yo big dog"})).toBeTruthy();
+    expect(Asset.init({name: "Yo big dog"}).isValid()).toBeTruthy();
   });
   
   it("has attribute hash", function(){
@@ -189,6 +187,27 @@ describe("Model", function(){
     asset.save();
     
     expect(clone.name).toEqual("checkout anytime");
+  });
+  
+  it("should be able to have models as attributes", function(){
+    var User = Spine.Model.setup("User", ["assets"]);
+    
+    User.include({
+      init: function(atts){
+        if (atts) this.load(atts);
+        var assets  = this.assets;
+        this.assets = Asset.sub();
+        if (assets) this.assets.refresh(assets.records || assets);
+      }
+    });
+    
+    var user = User.create({name: "that guy"});
+    expect(user.assets.attributes).toEqual(Asset.attributes);
+    
+    var asset = user.assets.create({name: "test.pdf"});
+    user.save();
+    
+    expect(User.first().assets.first()).toEqual(asset);
   });
   
   describe("with spy", function(){
@@ -248,6 +267,19 @@ describe("Model", function(){
       expect(spy).toHaveBeenCalledWith(asset);
     });
     
+    it("can fire change events on record", function(){
+      Asset.bind("change", spy);
+      
+      var asset = Asset.create({name: "cartoon world.png"});
+      expect(spy).toHaveBeenCalledWith(asset, "create");
+
+      asset.save();
+      expect(spy).toHaveBeenCalledWith(asset, "update");
+      
+      asset.destroy();
+      expect(spy).toHaveBeenCalledWith(asset, "destroy");
+    });
+    
     it("can fire error events", function(){
       Asset.bind("error", spy);
             
@@ -258,7 +290,8 @@ describe("Model", function(){
         }
       });
       
-      var asset = Asset.create({name: ""});
+      var asset = Asset.init({name: ""});
+      expect(asset.save()).toBeFalsy();
       expect(spy).toHaveBeenCalledWith(asset, "Name required");
     });
     

@@ -6,7 +6,7 @@ Spine is opinionated and, although at first glance it might look similar to othe
 
 Spine is tiny, the library comes in at around 500 lines of JavaScript, that's about 2K minified & compressed. However, it's not about size, it's how you use it, and Spine certainly packs a punch! 
 
-__Latest version:__ [0.0.3](spine.js) ([minified](spine.min.js)).
+__Latest version:__ [0.0.4](spine.js) ([minified](spine.min.js)).
 Or check out the [source code](http://github.com/maccman/spine).
 
 #Overview
@@ -18,9 +18,15 @@ So, what's so special about Spine, how does it stand out from the crowd?
 * Full __model__ layer and ORM
 * Ajax and HTML5 Local Storage adapters baked in
 * Asynchronous server communication
+* Works in __all major browsers__ (Chrome, Safari, Firefox, IE >= 7)
 * Simple and lightweight
+* Thorough documentation
 
 But don't take my word for it. Take a look at the source of the example applications below, and decide for yourself. 
+
+#Tutorials
+
+Spine has a growing __[set of tutorials](http://maccman.github.com/spine.tutorials/)__, from layouts, tabs and sidebars to forms, updating records and validation.
 
 #Examples
 
@@ -242,7 +248,7 @@ Or select a subset of records with `select()`.
 
 Validating models is dirt simple, simply override the `validate()` function with your own custom one.
 
-    Contact.extend({
+    Contact.include({
       validate: function(){
         if (!this.first_name)
           return "First name is required";
@@ -254,6 +260,8 @@ If `validate()` returns anything, the validation will fail and an *error* event 
     Contact.bind("error", function(rec, msg){
       alert("Contact failed to save - " + msg);
     });
+    
+In addition, `save()`, `create()` and `updateAttributes()` will all return false if validation fails. For more information about validation, see the [form tutorial](http://maccman.github.com/spine.tutorials/form.html).
 
 ##Serialization
 
@@ -272,10 +280,14 @@ Alternatively, you can retrieve an instance's attributes and implement your own 
         return serializeToXML(this.attributes());
       }
     });
+    
+If you're using an older browser which doesn't have native JSON support (i.e. IE 7), you'll need to include [json2.js](https://github.com/douglascrockford/JSON-js/blob/master/json2.js) which adds legacy support. 
 
 ##Persistence
 
 While storing records in memory is useful for quick retrieval, persisting them in one way or another is often required. Spine includes a number of pre-existing storage modules, such as Ajax and HTML5 Local Storage, which you can use for persistence. Alternatively you can roll your own custom one, take a look at `spine.model.ajax.js` for inspiration. 
+
+Spine's persistence is implemented via modules, so for HTML5 Local Storage persistence you'll need to include [spine.model.local.js](lib/spine.model.local.js) script in the page and for Ajax persistence you'll need [spine.model.ajax.js](lib/spine.model.ajax.js).
 
 To persist a model using HTML5 Local Storage, simply extend it with `Spine.Model.Local`.
 
@@ -699,7 +711,7 @@ For one thing, it's more performant; the list doesn't need to be re-drawn whenev
 All resources are located in the *lib* folder in Spine's repository. 
 
 * *lib/spine.list.js* - controller for managing lists, such as menus
-* *lib/spine.controller.manager.js* - class for managing controllers, basically a state machine
+* *lib/spine.manager.js* - class for managing controllers, basically a state machine
 * *lib/spine.model.ajax.js* - module for adding Ajax support to Spine's models
 * *lib/spine.model.local.js* - module for adding Local Storage support to Spine's models
 * *lib/spine.route.js* - module for adding route support to Spine
@@ -732,6 +744,8 @@ Spine has a full Jasmine test suite - you can run it from inside the browser [he
 #Change Log
 
 __0.0.2:__ 17/04/2011 - first public release
+__0.0.3:__ 25/04/2011 - IE support, tests and fixes
+__0.0.4:__ 11/05/2011 - Spine.Manager, Spine.List and Spine.Tabs
 
 <script type="text/javascript" charset="utf-8">
   jQuery(function($){
