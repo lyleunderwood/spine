@@ -1,17 +1,6 @@
-define(['../spine.js', '../lib/spine.controller.manager.js'], function(Spine) {
+define(['../spine.js', '../lib/spine.manager.js'], function(Spine) {
 
   Spine.Controller.include({
-    active: function(callback){
-      if (typeof callback == "function") 
-        dojo.connect(this, "active", this, callback) 
-      else {
-        var args = Spine.makeArray(arguments);
-        args.unshift("active");
-        this.trigger.apply(this, args);
-      }
-      return this;
-    },
-
     activate: function(){
       dojo.addClass(this.el, 'active');
       return this;
