@@ -1,4 +1,4 @@
-define('controllertests', ['../spine.js'], function(Spine) {
+define('controllertests', ['spine'], function(Spine) {
 describe("Controller", function(){
   var Users;
   var element;

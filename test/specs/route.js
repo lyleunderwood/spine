@@ -1,4 +1,4 @@
-define('routetests', ['../spine.js', '../lib/spine.route.js'], function(Spine) {
+define('routetests', ['spine', 'spine/spine.route'], function(Spine) {
 describe("Routing", function(){
   var Route = Spine.Route;
   var spy;

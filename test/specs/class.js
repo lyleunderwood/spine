@@ -1,4 +1,4 @@
-define('classtests', ['../spine.js'], function(Spine) {
+define('classtests', ['spine'], function(Spine) {
 describe("Class", function(){
   var User;
   

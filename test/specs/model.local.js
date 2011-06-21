@@ -1,4 +1,4 @@
-define('model.localtests', ['../spine.js', '../lib/spine.model.local.js'], function(Spine) {
+define('model.localtests', ['spine', 'spine/spine.model.local'], function(Spine) {
 describe("Model.Local", function(){
   var User;
   var Model = Spine.Model;

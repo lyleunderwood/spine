@@ -1,4 +1,4 @@
-define('modeltests', ['../spine.js'], function(Spine) {
+define('modeltests', ['spine'], function(Spine) {
 describe("Model", function(){
   var Asset;
   

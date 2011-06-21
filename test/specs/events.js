@@ -1,4 +1,4 @@
-define('eventtests', ['../spine.js'], function(Spine) {
+define('eventtests', ['spine'], function(Spine) {
 describe("Events", function(){
   var EventTest;
   var spy;

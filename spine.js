@@ -1,5 +1,6 @@
 define(function(){
   var Spine;
+
   if (typeof exports !== "undefined") {
     Spine = exports;
   } else {
@@ -533,3 +534,4 @@ define(function(){
 
   return Spine;
 });
+//console.log(spine);
