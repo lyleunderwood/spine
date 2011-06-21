@@ -1,4 +1,4 @@
-define(['dojo', '../spine.js', '../lib/spine.route.js'], function(dojo, Spine) {
+define(['dojo', 'spine', 'spine/spine.route'], function(dojo, Spine) {
   Spine.Route = Spine.Route.extend({
     setup: function(options){
       if (options && options.history)

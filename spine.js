@@ -534,4 +534,3 @@ define(function(){
 
   return Spine;
 });
-//console.log(spine);

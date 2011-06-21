@@ -1,4 +1,4 @@
-define(['../spine.js', '../lib/spine.manager.js'], function(Spine) {
+define(['spine', 'spine/spine.manager'], function(Spine) {
 
   Spine.Controller.include({
     activate: function(){
